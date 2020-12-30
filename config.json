@@ -119,5 +119,9 @@
     "writeInFile": {
         "da": "skriv i en fil",
         "en": "write in a file"
+    },
+    "timeoutError": {
+    "da": "Jeg har ventet for længe på at du skulle snakke.",
+    "en": "I've waited too long for you to speak."
     }
 }
