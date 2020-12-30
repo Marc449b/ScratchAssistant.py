@@ -24,7 +24,7 @@ def langtranslator(input: str):
 
 
 def greetings(lang: str):
-    hour = datetime.datetime.now()
+    hour = datetime.datetime.now().hour
     if lang == "da":
         if 6 <= hour <= 10:
             return "Godmorgen. Jeg lytter"
