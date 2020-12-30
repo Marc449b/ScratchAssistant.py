@@ -1,0 +1,123 @@
+{
+    "language": "da",
+    "languages": {
+        "en": "en",
+        "english": "english",
+        "american": "american",
+        "america": "america",
+        "usa": "usa",
+        "uk": "uk",
+        "england": "england",
+        "british": "british",
+        "da": "da",
+        "dk": "dk",
+        "danish": "danish",
+        "dansk": "dansk",
+        "denmark": "denmark",
+        "danmark": "danmark"
+    },
+    "said": {
+        "da": "Du sagde",
+        "en": "You said"
+    },
+    "UnknownValueError": {
+        "da": "Google Speech Recognition kunne ikke forstå lyden",
+        "en": "Google speech recognition could not understand the audio"
+    },
+    "RequestError": {
+        "da": "Undskyld, men jeg kunne ikke tilgå den nødvendige data fra Google Speech Recognition",
+        "en": "Sorry, but I could not request the required data from google speech recognition"
+    },
+    "Help": {
+        "da": "hjælp",
+        "en": "help"
+    },
+    "HelpMe": {
+        "da": "hjælp mig",
+        "en": "help me"
+    },
+    "WhatCanYouDo": {
+        "da": "hvad kan du gøre",
+        "en": "what can you do"
+    },
+    "Done": {
+        "da": "færdig",
+        "en": "done"
+    },
+    "Didn'tUnderstand": {
+        "da": "Undskyld, men jeg forstod ikke hvad du prøvede på at sige.",
+        "en": "Sorry, but I didn't catch what you were saying."
+    },
+    "WhatICanDo": {
+        "da": "Lige nu kan jeg kun snakke, høre og åbne browser tabs.",
+        "en": "Right now, I can only speak, hear and open browser tabs."
+    },
+    "FilenameQuestion": {
+        "da": "Hvad hedder filen?", 
+        "en": "What is the file called?"
+    },
+    "FileOpenedWhatNext": {
+        "da": "Okay, jeg har åbnet filen. Hvad skal jeg skrive i den?",
+        "en": "Ok, I've opened the file. What do you want me to write in it?"
+    },
+    "NothingFound": {
+        "da": "Ingenting fundet for",
+        "en": "Nothing found for"
+    },
+    "ShouldISearch": {
+        "da": "skal jeg søge på det?",
+        "en": "should I search for it?"
+    },
+    "Won'tSearch": {
+        "da": "ok, så vil jeg ikke søge på det.",
+        "en": "ok, I won't search for it then."
+    },
+    "yes": {
+        "da": "ja",
+        "en": "yes"
+    },
+    "no": {
+        "da": "nej",
+        "en": "no"
+    },
+    "nothanks": {
+        "da": "nej tak",
+        "en": "no thanks"
+    },
+    "yesplease": {
+        "da": "ja tak",
+        "en": "yes please"
+    },
+    "invalidExpression": {
+        "da": "virker ikke som et gyldigt udtryk, jeg har enten brug for et ja eller et nej.",
+        "en": "doesn't seem like a valid expression, I either need a yes or a no."
+    },
+    "searchFor": {
+        "da": "søg på",
+        "en": "search for"
+    },
+    "onWikipedia": {
+        "da": "på wikipedia",
+        "en": "on wikipedia"
+    },
+    "onBrowser": {
+        "da": "på browser",
+        "en": "on browser"
+    },
+    "createFileAndWrite": {
+        "da": "lav en fil og skriv i det",
+        "en": "create a file and write in it"
+    },
+    "createFile": {
+        "da": "lav en fil",
+        "en": "create a file"
+    },
+    "makeFile": {
+        "da": "lav en fil",
+        "en": "make a file"
+    },
+    "writeInFile": {
+        "da": "skriv i en fil",
+        "en": "write in a file"
+    }
+}
