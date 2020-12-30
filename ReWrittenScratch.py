@@ -88,4 +88,6 @@ except ValueError:
     say(datajson["UnknownValueError"][lang], lang)
 except ConnectionError:
     say(datajson["RequestError"][lang], lang)
+except TimeoutError:
+    say(datajson["timeoutError"][lang], lang)
 f.close()
