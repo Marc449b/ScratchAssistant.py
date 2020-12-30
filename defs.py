@@ -69,7 +69,7 @@ def listen(sr_lang: str):
     try:
         with sr.Microphone() as source:
             r.adjust_for_ambient_noise(source)
-            audio = r.listen(source)
+            audio = r.listen(source, timeout=5)
             text = r.recognize_google(audio, language=sr_lang)
             textl = text.lower()
             return(text, textl)
@@ -77,3 +77,5 @@ def listen(sr_lang: str):
         raise ValueError()
     except sr.RequestError:
         raise ConnectionError()
+    except sr.WaitTimeoutError:
+        raise TimeoutError()
