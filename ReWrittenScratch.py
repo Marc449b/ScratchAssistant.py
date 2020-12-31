@@ -4,7 +4,6 @@ from datetime import datetime
 
 from defs import greetings, listen, say, search, wikipedia, langtranslator
 
-now = datetime.now()
 f = open(os.path.join(os.path.dirname(__file__), 'config.json'), "r+t", encoding="utf8")
 datajson = json.loads(f.read())
 languages = []
