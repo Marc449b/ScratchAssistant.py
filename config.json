@@ -1,32 +1,20 @@
 {
     "language": "da",
-    "languages": {
-        "en": "en",
-        "english": "english",
-        "american": "american",
-        "america": "america",
-        "usa": "usa",
-        "uk": "uk",
-        "england": "england",
-        "british": "british",
-        "da": "da",
-        "dk": "dk",
-        "danish": "danish",
-        "dansk": "dansk",
-        "denmark": "denmark",
-        "danmark": "danmark"
+    "languages": { 
+        "en": "en", "english": "en", "american": "en", "america": "en", "usa": "en", "uk": "en", "england": "en", "british": "en",
+        "da": "da", "dk": "da", "danish": "da", "dansk": "da", "denmark": "da", "danmark": "da"
     },
     "said": {
         "da": "Du sagde",
         "en": "You said"
     },
     "UnknownValueError": {
-        "da": "Google Speech Recognition kunne ikke forstå lyden",
-        "en": "Google speech recognition could not understand the audio"
+        "da": "[red]Google Speech Recognition kunne ikke forstå lyden[/red]",
+        "en": "[red]Google speech recognition could not understand the audio[/red]"
     },
     "RequestError": {
-        "da": "Undskyld, men jeg kunne ikke tilgå den nødvendige data fra Google Speech Recognition",
-        "en": "Sorry, but I could not request the required data from google speech recognition"
+        "da": "[red]Undskyld, men jeg kunne ikke tilgå den nødvendige data fra Google Speech Recognition[/red]",
+        "en": "[red]Sorry, but I could not request the required data from Google Speech Recognition[/red]"
     },
     "Help": {
         "da": "hjælp",
@@ -41,19 +29,19 @@
         "en": "what can you do"
     },
     "Done": {
-        "da": "færdig",
-        "en": "done"
+        "da": "[green]færdig[/green]",
+        "en": "[green]done[/green]"
     },
     "Didn'tUnderstand": {
-        "da": "Undskyld, men jeg forstod ikke hvad du prøvede på at sige.",
-        "en": "Sorry, but I didn't catch what you were saying."
+        "da": "[red]Undskyld, men jeg forstod ikke hvad du prøvede på at sige.[/red]",
+        "en": "[red]Sorry, but I didn't catch what you were saying.[/red]"
     },
     "WhatICanDo": {
-        "da": "Lige nu kan jeg kun snakke, høre og åbne browser tabs.",
+        "da": "Lige nu kan jeg kun snakke, høre og åbne browserfaner.",
         "en": "Right now, I can only speak, hear and open browser tabs."
     },
     "FilenameQuestion": {
-        "da": "Hvad hedder filen?", 
+        "da": "Hvad hedder filen?",
         "en": "What is the file called?"
     },
     "FileOpenedWhatNext": {
@@ -61,16 +49,16 @@
         "en": "Ok, I've opened the file. What do you want me to write in it?"
     },
     "NothingFound": {
-        "da": "Ingenting fundet for",
-        "en": "Nothing found for"
+        "da": "[yellow]Ingenting fundet for[/yellow]",
+        "en": "[yellow]Nothing found for[/yellow]"
     },
     "ShouldISearch": {
-        "da": "skal jeg søge på det?",
-        "en": "should I search for it?"
+        "da": "[yellow]skal jeg søge på det?[/yellow]",
+        "en": "[yellow]should I search for it?[/yellow]"
     },
     "Won'tSearch": {
-        "da": "ok, så vil jeg ikke søge på det.",
-        "en": "ok, I won't search for it then."
+        "da": "[bright_red]ok, så vil jeg ikke søge på det.[/bright_red]",
+        "en": "[bright_red]ok, I won't search for it then.[/bright_red]"
     },
     "yes": {
         "da": "ja",
@@ -89,8 +77,8 @@
         "en": "yes please"
     },
     "invalidExpression": {
-        "da": "virker ikke som et gyldigt udtryk, jeg har enten brug for et ja eller et nej.",
-        "en": "doesn't seem like a valid expression, I either need a yes or a no."
+        "da": "[yellow]virker ikke som et gyldigt udtryk, jeg har enten brug for et[/yellow] [green]ja[/green] [yellow]eller et[/yellow] [red]nej[/red].",
+        "en": "[yellow]doesn't seem like a valid expression, I either need a[/yellow] [green]yes[/green] [yellow]or a[/yellow] [red]no[/red]."
     },
     "searchFor": {
         "da": "søg på",
@@ -105,7 +93,7 @@
         "en": "on browser"
     },
     "createFileAndWrite": {
-        "da": "lav en fil og skriv i det",
+        "da": "lav en fil og skriv i den",
         "en": "create a file and write in it"
     },
     "createFile": {
@@ -121,7 +109,23 @@
         "en": "write in a file"
     },
     "timeoutError": {
-    "da": "Jeg har ventet for længe på at du skulle snakke.",
-    "en": "I've waited too long for you to speak."
+        "da": "[red]Jeg har ventet for længe på at du skulle snakke.[/red]",
+        "en": "[red]I've waited too long for you to speak.[/red]"
+    },
+    "searchingFor": {
+        "da": "Søger på",
+        "en": "Searching for"
+    },
+    "now": {
+        "da": "nu",
+        "en": "now"
+    },
+    "opening": {
+        "da": "Åbner",
+        "en": "Opening"
+    },
+    "inBrowserNow": {
+        "da": "I browser nu.",
+        "en": "In browser now."
     }
 }
