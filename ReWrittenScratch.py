@@ -1,25 +1,25 @@
 import json
 import os
 
+from rich import print
 from defs import greetings, listen, say, search, wikipedia, langtranslator
 
-f = open(os.path.join(os.path.dirname(__file__), 'config.json'), "r+t", encoding="utf8")
-datajson = json.loads(f.read())
-languages = []
-for obj in datajson["languages"]:
-    languages.append(datajson["languages"][obj])
+with open(os.path.join(os.path.dirname(__file__), 'config.json'), "r+t", encoding="utf8") as f:
+    datajson = json.loads(f.read())
 
-if not datajson["language"]:
+languages = [obj for obj in datajson["languages"]]
+
+language = datajson["language"]
+if not language:
     say('Choose a language (either English or Danish)', "en")
     language = input()
     while language.lower() not in languages:
         print(f"\u0007")
         say(f"\"{language}\" Doesn't seem like a supported language, please try again.", "en")
         language = input()
-else:
-    language = datajson["language"]
+    language = language.lower()
 
-lang, sr_lang = langtranslator(language.lower())
+lang, sr_lang = langtranslator(datajson["languages"][language])
 
 if datajson["language"] != lang:
     datajson["language"] = lang
@@ -28,8 +28,9 @@ if datajson["language"] != lang:
 
 try:
     say(greetings(lang), lang)
-    text, textl = listen(sr_lang)
-    print(f"{datajson['said'][lang]}: {text}")
+    text = listen(sr_lang)
+    textl = text.lower()
+    print(f"{datajson['said'][lang]}: \"{text}\"")
     if textl in (datajson["HelpMe"][lang], datajson["WhatCanYouDo"][lang], datajson["Help"][lang]):
         say(datajson["WhatICanDo"][lang], lang)
     elif textl in (datajson["createFileAndWrite"][lang],
@@ -37,46 +38,58 @@ try:
                    datajson["makeFile"][lang],
                    datajson["writeInFile"][lang]):
         say(datajson["FilenameQuestion"][lang], lang)
-        filename, filenamel = listen(sr_lang)
-        print(f"{datajson['said'][lang]}: {filename}")
+        filename = listen(sr_lang)
+        print(f"{datajson['said'][lang]}: \"{filename}\"")
         fil = open(f"{filename}.txt", "w")
         say(datajson["FileOpenedWhatNext"][lang], lang)
-        filetext, filetextl = listen(sr_lang)
-        print(f"{datajson['said'][lang]}: {filetext}")
+        filetext = listen(sr_lang)
+        print(f"{datajson['said'][lang]}: \"{filetext}\"")
         fil.write(filetext)
         fil.close()
         say(datajson["Done"][lang], lang)
 
     elif textl.startswith(datajson["searchFor"][lang]):
-        words = textl.split()
+        words = textl.split()[2:]
 
-        if textl.endswith(datajson["onWikipedia"][lang]):
-            wikipedia(words[2:][:-2], lang)
+        if textl.endswith(datajson["onWikipedia"][lang]) or textl.endswith(datajson["onBrowser"][lang]):
+            words, term, i = words[:-2], "", 1
+            for word in words:
+                term += word + f"{'' if i == len(words) else ' '}"
+                i += 1
+            if textl.endswith("wikipedia"):
+                wikipedia(term, lang)
+            else:
+                search(term, lang)
 
-        elif textl.endswith("wikipedia"):
-            wikipedia(words[2:][:-1], lang)
-
-        elif textl.endswith(datajson["onBrowser"][lang]):
-            search(words[2:][:-2], lang)
-
-        elif textl.endswith("browser"):
-            search(words[2:][:-1], lang)
+        elif textl.endswith("wikipedia") or textl.endswith("browser"):
+            words, term, i = words[:-1], "", 1
+            for word in words:
+                term += word + f"{'' if i == len(words) else ' '}"
+                i += 1
+            if textl.endswith("wikipedia"):
+                wikipedia(term, lang)
+            else:
+                search(term, lang)
 
         else:
-            search(words[2:], lang)
+            term, i = "", 1
+            for word in words:
+                term += word + f"{'' if i == len(words) else ' '}"
+                i += 1
+            search(term, lang)
 
     else:
-        say(f'{datajson["NothingFound"][lang]} {text} {datajson["ShouldISearch"][lang]}', lang)
-        yesorno, yesornol = listen(sr_lang)
-        while yesornol not in (datajson["yes"][lang], datajson["no"][lang]):
-            say(f"{yesorno} {datajson['invalidExpression'][lang]}")
-            yesorno, yesornol = listen(sr_lang)
-        print(f"{datajson['said'][lang]}: {yesorno}")
+        say(f'{datajson["NothingFound"][lang]} \"{text}\" {datajson["ShouldISearch"][lang]}', lang)
+        yesorno = listen(sr_lang)
+        while yesorno.lower() not in (datajson["yes"][lang], datajson["no"][lang]):
+            say(f"\"{yesorno}\" {datajson['invalidExpression'][lang]}", lang)
+            yesorno = listen(sr_lang)
+        print(f"{datajson['said'][lang]}: \"{yesorno}\"")
 
-        if yesornol in datajson["nothanks"][lang]:
+        if yesorno.lower() in datajson["nothanks"][lang]:
             say(datajson["Won'tSearch"][lang], lang)
 
-        elif yesornol in datajson["yesplease"][lang]:
+        elif yesorno.lower() in datajson["yesplease"][lang]:
             search(text, lang)
 
         else:
@@ -88,4 +101,3 @@ except ConnectionError:
     say(datajson["RequestError"][lang], lang)
 except TimeoutError:
     say(datajson["timeoutError"][lang], lang)
-f.close()
