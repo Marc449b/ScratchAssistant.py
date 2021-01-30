@@ -1,22 +1,25 @@
 import datetime
 import itertools
+import json
 import os
 import webbrowser
 
+import rich.color
 import speech_recognition as sr
-import wikipedia
-from googlesearch import search
+import wikipedia as wiki
+from wikipedia import summary
+from googlesearch import search as gsearch
 from gtts import gTTS
 from playsound import playsound
-from wikipedia import summary
+from rich import print
 
 r = sr.Recognizer()
 filename_cycle = [1, 2]
 salts = itertools.cycle(filename_cycle)
 
 
-def langtranslator(input: str):
-    if input in ('da', 'dk', 'danish', 'dansk', 'denmark', 'danmark'):
+def langtranslator(language: str):
+    if language == "da":
         lang, sr_lang = "da", "da"
     else:
         lang, sr_lang = "en", "en-GB"
@@ -45,25 +48,31 @@ def greetings(lang: str):
             return "Good night. I am listening"
 
 
-def search(text, lang: str):
-    say(f'ok, searching for {text} now', lang)
-    s = search(text, num_results=1, lang=lang)
-    say(f'opening {text} in browser now', lang)
-    webbrowser.open(s)
+def search(term: str, lang: str):
+    with open(os.path.join(os.path.dirname(__file__), 'config.json'), "r+t", encoding="utf8") as f:
+        datajson = json.loads(f.read())
+    say(f'{datajson["searchingFor"][lang]} \"{term}\" {datajson["now"][lang]}', lang)
+    s = gsearch(term=term, num_results=1, lang=lang)
+    say(f'{datajson["opening"][lang]} \"{term}\" {datajson["inBrowserNow"][lang]}', lang)
+    webbrowser.open(s[0])
 
 
-def wikipedia(text, lang: str):
-    wikipedia.set_lang(lang)
+def wikipedia(text: str, lang: str):
+    wiki.set_lang(lang)
     say(summary(title=text), lang)
 
 
-def say(string, lang: str):
+def say(string: str, lang: str):
+    said_string = string
+    for color in rich.color.ANSI_COLOR_NAMES:
+        said_string = said_string.replace(f"[{color}]", "").replace(f"[/{color}]", "")
     salt = next(salts)
     filename = f"say{salt}.mp3"
-    gTTS(text=string, lang=lang).save(filename)
+    gTTS(text=said_string, lang=lang).save(filename)
     print(string)
     playsound(filename)
     os.remove(filename)
+
 
 def listen(sr_lang: str):
     try:
@@ -71,8 +80,7 @@ def listen(sr_lang: str):
             r.adjust_for_ambient_noise(source)
             audio = r.listen(source, timeout=5)
             text = r.recognize_google(audio, language=sr_lang)
-            textl = text.lower()
-            return(text, textl)
+            return text
     except sr.UnknownValueError:
         raise ValueError()
     except sr.RequestError:
